@@ -1,3 +1,5 @@
+const baseUrl = 'http://127.0.0.1:6969';
+
 const bsHide = (el) => {
   el.addClass("d-none");
 }
@@ -34,7 +36,7 @@ const uploadFiles = (eo) => {
       });
       return xhr;
     },
-    url: 'http://127.0.0.1:6969/upload',
+    url: `${baseUrl}/upload`,
     type: 'POST',
     data: formData,
     dataType: 'json',
@@ -67,7 +69,7 @@ const getFileAnalysis = () => {
 
   let data = {"session_id": sessionId};
   $.ajax({
-    url: 'http://127.0.0.1:6969/analysis',
+    url: `${baseUrl}/analysis`,
     type: 'GET',
     data: data,
     cache: false,
@@ -92,7 +94,7 @@ const downloadCSV = (fileName, tableName) => {
   const sid = encodeURIComponent(sessionId),
         fname = encodeURIComponent(fileName),
         tname = encodeURIComponent(tableName);
-  let url = `http://127.0.0.1:6969/convert/${sid}/${fname}-${tname}.csv`;
+  let url = `${baseUrl}/convert/${sid}/${fname}-${tname}.csv`;
   location.href = url;
 }
 
